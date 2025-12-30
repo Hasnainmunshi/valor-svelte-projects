@@ -13,6 +13,7 @@
 	let pageIndex = 1;
 	const limit = 12;
 
+	// Reactive slug and collection
 	$: slug = $page.params.slug;
 	$: collection = slug.replace('-', ' ');
 
@@ -141,7 +142,8 @@
 		<div class="flex justify-center mt-10 gap-3">
 			{#each Array(sortedPaginated.totalPages) as _, i}
 				<button
-					class={`px-4 py-2 border rounded ${pageIndex === i + 1 ? 'bg-black text-white' : ''}`}
+					class={`px-4 py-2 border rounded ${pageIndex === i + 1 ? 'bg-black text-white cursor-default' : ''}`}
+					disabled={pageIndex === i + 1}
 					on:click={() => (pageIndex = i + 1)}
 				>
 					{i + 1}
