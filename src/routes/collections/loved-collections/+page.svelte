@@ -22,7 +22,7 @@
 
 	<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-12 px-12">
 		{#each previewCards as item}
-			<div on:click={() => goto(`/collections/${item.slug}`)} class="cursor-pointer group">
+			<a href={`/products/${item.slug}`} class="group block">
 				<img
 					class="w-full h-52 lg:h-96 object-cover rounded group-hover:scale-105 duration-300"
 					src={item.img}
@@ -33,7 +33,7 @@
 					<h2 class="font-semibold">{item.name}</h2>
 					<ArrowRight class="w-4 h-4 transition group-hover:translate-x-1" />
 				</div>
-			</div>
+			</a>
 		{/each}
 	</div>
 

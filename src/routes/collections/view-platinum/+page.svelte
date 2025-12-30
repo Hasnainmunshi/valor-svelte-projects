@@ -11,7 +11,7 @@
 
 	<div class=" py-16 px-6 lg:px-52 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-2">
 		{#each newCollection as item}
-			<div class="group cursor-pointer">
+			<a href={`/products/${item.id}`} class="group block">
 				<div class="w-full h-64 md:h-72 overflow-hidden rounded-lg bg-gray-100 relative">
 					<img
 						src={item.image}
@@ -35,7 +35,7 @@
 						{item.price.toLocaleString()} BDT
 					</p>
 				</div>
-			</div>
+			</a>
 		{/each}
 	</div>
 </section>

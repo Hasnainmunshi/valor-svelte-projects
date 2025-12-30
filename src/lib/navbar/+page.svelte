@@ -26,7 +26,7 @@
 <nav class="px-6 md:px-10 bg-white fixed border border-gray-100 w-full z-50">
 	<div class="max-w-7xl mx-auto flex justify-between items-center py-3">
 		<!-- Mobile Menu -->
-		<button class="md:hidden" on:click={() => (open = !open)}>
+		<button class="md:hidden" aria-label="Toggle menu" on:click={() => (open = !open)}>
 			{#if open}
 				<X class="h-7 w-7" />
 			{:else}
@@ -35,15 +35,17 @@
 		</button>
 
 		<!-- Logo -->
-		<img src="/p.avif" class="h-20 md:h-32 cursor-pointer" on:click={() => goto('/')} />
+		<a href="/" class="inline-block">
+			<img src="/p.avif" alt="Valor Logo" class="h-20 md:h-32" />
+		</a>
 
 		<!-- Mobile Icons -->
 		<div class="flex gap-4 md:hidden items-center">
-			<button on:click={() => searchOpen.set(true)}>
+			<button aria-label="Search" on:click={() => searchOpen.set(true)}>
 				<Search size={22} />
 			</button>
 
-			<div class="relative" on:click={() => goto('/cart')}>
+			<button type="button" class="relative" aria-label="Go to cart" on:click={() => goto('/cart')}>
 				<ShoppingBag size={22} />
 				{#if $cartCount > 0}
 					<span
@@ -52,7 +54,7 @@
 						{$cartCount}
 					</span>
 				{/if}
-			</div>
+			</button>
 		</div>
 
 		<!-- Desktop Links -->
@@ -71,15 +73,15 @@
 
 		<!-- Desktop Icons -->
 		<div class="hidden md:flex gap-5 items-center">
-			<button on:click={() => searchOpen.set(true)}>
+			<button aria-label="Search" on:click={() => searchOpen.set(true)}>
 				<Search class="h-6 w-6" />
 			</button>
 
-			<button on:click={() => goto('/auth/login')}>
+			<button aria-label="Login" on:click={() => goto('/auth/login')}>
 				<User class="h-6 w-6" />
 			</button>
 
-			<div class="relative cursor-pointer" on:click={() => goto('/cart')}>
+			<button type="button" class="relative" aria-label="Go to cart" on:click={() => goto('/cart')}>
 				<ShoppingBag class="h-6 w-6" />
 				{#if $cartCount > 0}
 					<span
@@ -88,7 +90,7 @@
 						{$cartCount}
 					</span>
 				{/if}
-			</div>
+			</button>
 		</div>
 	</div>
 </nav>

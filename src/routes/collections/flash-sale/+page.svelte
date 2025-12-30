@@ -74,6 +74,7 @@
 				<div class="relative overflow-hidden rounded-lg">
 					<img
 						src={item.image}
+						alt={item.title}
 						class="rounded-lg w-full h-80 object-cover transition group-hover:scale-105 duration-300"
 					/>
 
