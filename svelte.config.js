@@ -1,9 +1,18 @@
-import adapter from '@sveltejs/adapter-cloudflare';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from '@sveltejs/adapter-auto';
+import preprocess from 'svelte-preprocess';
 
-export default {
-	preprocess: vitePreprocess(),
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	// Preprocess supports TypeScript, SCSS, PostCSS, etc.
+	preprocess: preprocess(),
+
 	kit: {
 		adapter: adapter()
+		// optional: change paths if deploying to subdirectory
+		// paths: {
+		//   base: '/my-base-path'
+		// }
 	}
 };
+
+export default config;
