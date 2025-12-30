@@ -8,7 +8,7 @@
 	$: valueProducts = products.filter((p) => p.category === 'value fest');
 
 	// Filter
-	$: filtered = valueProducts
+	$: baseFiltlred = valueProducts
 		.filter((p) =>
 			priceFilter === 'low'
 				? p.salePrice <= 1500
@@ -21,7 +21,7 @@
 		);
 
 	// Sort
-	$: sorted = [...filtered].sort((a, b) => {
+	$: sorted = [...baseFiltlred].sort((a, b) => {
 		if (sort === 'low') return a.salePrice - b.salePrice;
 		if (sort === 'high') return b.salePrice - a.salePrice;
 		return 0;

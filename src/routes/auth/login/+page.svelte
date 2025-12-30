@@ -1,7 +1,7 @@
 <section class="min-h-screen flex items-center justify-center px-6">
 	<div class="w-full max-w-md bg-gray-100 rounded-xl shadow-md p-8">
 		<div class="flex items-center justify-center">
-			<img src="/logo.avif" alt="" />
+			<img src="/logo.avif" alt="logo" />
 		</div>
 		<!-- Title -->
 		<h1 class="text-2xl font-bold text-gray-900 mb-2">Sign in</h1>

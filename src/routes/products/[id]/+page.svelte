@@ -88,10 +88,6 @@
 					<p class="text-gray-700 mb-4">
 						Premium Jacquard Cotton · {product.price} BDT
 					</p>
-					<!-- <p class="text-gray-600">
-						Crafted for soft, elegant, and occasion-ready comfort. Experience your premium look
-						today.
-					</p> -->
 				</div>
 			</div>
 		</div>

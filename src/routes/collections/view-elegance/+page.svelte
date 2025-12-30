@@ -1,7 +1,5 @@
 <script>
-	import { goto } from '$app/navigation';
 	import { products } from '$lib/data/products';
-	import Navbar from '$lib/navbar/+page.svelte';
 
 	let newCollection = products.filter((item) => item.category === 'Elegance');
 </script>

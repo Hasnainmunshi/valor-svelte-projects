@@ -1,5 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
 	import { products } from '$lib/data/products';
 
 	let newCollection = products.slice(0, 30);
