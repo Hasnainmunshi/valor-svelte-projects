@@ -1,4 +1,4 @@
-<section class="min-h-screen flex items-center justify-center px-6">
+<section class="min-h-screen flex items-center justify-center">
 	<div class="w-full max-w-md bg-gray-100 rounded-xl shadow-md p-8">
 		<div class="flex items-center justify-center">
 			<img src="/logo.avif" alt="logo" />
