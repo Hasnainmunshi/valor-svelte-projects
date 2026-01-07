@@ -1,17 +1,11 @@
 <script>
 	import { page } from '$app/stores';
 	import { products } from '$lib/data/products';
-	import {
-		ArrowDownNarrowWide,
-		ChevronDown,
-		ChevronLeft,
-		ChevronRight,
-		CircleX,
-		Download,
-		Heart
-	} from '@lucide/svelte';
+	import { ChevronDown, ChevronLeft, ChevronRight, Download, Heart } from '@lucide/svelte';
 	import { stopPropagation } from 'svelte/legacy';
 	import Size from '$lib/stores/size.svelte';
+	import { addToCart, cartOpen } from '$lib/stores/cart';
+	import { goto } from '$app/navigation';
 
 	let qty = 1;
 	let selectedSize = 'M';
@@ -45,6 +39,22 @@
 		if (start > 0) start--;
 	}
 	$: visibleImages = () => thumbnailsImg.slice(start, start + visibleCount);
+
+	function handleAddToCart() {
+		if (!product) return;
+
+		addToCart({
+			id: product.id,
+			title: product.title,
+			price: product.price,
+			image: product.image,
+			color,
+			size: selectedSize,
+			quantity: qty
+		});
+
+		cartOpen.set(true);
+	}
 </script>
 
 {#if product}
@@ -97,7 +107,18 @@
 					{product.price.toLocaleString()}.00 BDT
 				</p>
 
-				<p class="text-xs font-light text-gray-600 mb-4">Shipping calculated at checkout.</p>
+				<p class="text-xs font-light text-gray-600 mb-4">
+					<a
+						href="#"
+						on:click|preventDefault={() => {
+							cartOpen.set(false);
+							goto('/collections/shippingInfo');
+						}}
+						class="font-normal hover:font-bold underline hover:underline-offset-1 transition-all"
+					>
+						shipping
+					</a> calculated at checkout.
+				</p>
 
 				<!-- Color -->
 				<div class="mb-6">
@@ -179,6 +200,7 @@
 				<!-- Buttons -->
 				<div class="  mb-8 space-y-3">
 					<button
+						on:click={handleAddToCart}
 						class="w-full py-3 border rounded-lg shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
 					>
 						Add to cart

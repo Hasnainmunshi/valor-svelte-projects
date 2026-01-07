@@ -2,8 +2,11 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { Menu, Search, ShoppingBag, User, X } from '@lucide/svelte';
+
 	import { searchOpen } from '$lib/stores/search';
 	import { cartCount } from '$lib/stores/cart';
+	import { cartOpen } from '$lib/stores/cart';
+	import { isLoggedIn } from '$lib/stores/auth';
 
 	let open = false;
 
@@ -23,10 +26,10 @@
 	$: currentPath = $page.url.pathname;
 </script>
 
-<nav class="px-6 md:px-10 bg-white fixed border border-gray-100 w-full z-50">
+<nav class="px-6 md:px-10 bg-white fixed shadow w-full z-50">
 	<div class="max-w-7xl mx-auto flex justify-between items-center py-3">
 		<!-- Mobile Menu -->
-		<button class="md:hidden" aria-label="Toggle menu" on:click={() => (open = !open)}>
+		<button class="md:hidden" on:click={() => (open = !open)}>
 			{#if open}
 				<X class="h-7 w-7" />
 			{:else}
@@ -35,27 +38,9 @@
 		</button>
 
 		<!-- Logo -->
-		<a href="/" class="inline-block">
+		<a href="/">
 			<img src="/p.avif" alt="Valor Logo" class="h-20 md:h-32" />
 		</a>
-
-		<!-- Mobile Icons -->
-		<div class="flex gap-4 md:hidden items-center">
-			<button aria-label="Search" on:click={() => searchOpen.set(true)}>
-				<Search size={22} />
-			</button>
-
-			<button type="button" class="relative" aria-label="Go to cart" on:click={() => goto('/cart')}>
-				<ShoppingBag size={22} />
-				{#if $cartCount > 0}
-					<span
-						class="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
-					>
-						{$cartCount}
-					</span>
-				{/if}
-			</button>
-		</div>
 
 		<!-- Desktop Links -->
 		<ul class="hidden md:flex gap-6 font-light">
@@ -69,23 +54,38 @@
 					</a>
 				</li>
 			{/each}
+
+			{#if $isLoggedIn}
+				<li>
+					<a href="/orders" class="hover:underline font-medium"> Orders </a>
+				</li>
+			{/if}
 		</ul>
 
-		<!-- Desktop Icons -->
-		<div class="hidden md:flex gap-5 items-center">
-			<button aria-label="Search" on:click={() => searchOpen.set(true)}>
+		<!-- Icons -->
+		<div class="flex gap-5 items-center">
+			<!-- Search -->
+			<button on:click={() => searchOpen.set(true)}>
 				<Search class="h-6 w-6" />
 			</button>
 
-			<button aria-label="Login" on:click={() => goto('/auth/login')}>
-				<User class="h-6 w-6" />
-			</button>
+			<!-- Auth -->
+			{#if $isLoggedIn}
+				<button on:click={() => goto('/account')}>
+					<User class="h-6 w-6" />
+				</button>
+			{:else}
+				<button on:click={() => goto('/auth/login')}>
+					<User class="h-6 w-6" />
+				</button>
+			{/if}
 
-			<button type="button" class="relative" aria-label="Go to cart" on:click={() => goto('/cart')}>
+			<!-- Cart -->
+			<button class="relative" on:click={() => cartOpen.set(true)}>
 				<ShoppingBag class="h-6 w-6" />
 				{#if $cartCount > 0}
 					<span
-						class="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+						class="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center"
 					>
 						{$cartCount}
 					</span>

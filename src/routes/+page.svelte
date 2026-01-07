@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Hero from '$lib/hero/+page.svelte';
-	import Footer from '$lib/footer/+page.svelte';
+
 	import Arrivals from '../routes/collections/new-arrivals/+page.svelte';
 	import LovedCollections from '../routes/collections/loved-collections/+page.svelte';
 	import Elegance from '../routes/collections/elegance/+page.svelte';
@@ -22,5 +22,3 @@
 <LUXURY />
 <VALORKIDS />
 <ALLPANJIBI />
-
-<Footer />
