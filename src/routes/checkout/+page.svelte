@@ -92,6 +92,7 @@
 					bind:value={email}
 					class={`w-full border px-3 py-3  rounded ${errors.email ? 'border-red-500 ' : 'border-gray-300'}`}
 				/>
+
 				<label class="flex items-center gap-2 text-sm">
 					<input type="checkbox" bind:checked={emailInfo} />
 					Email me with news and offers
