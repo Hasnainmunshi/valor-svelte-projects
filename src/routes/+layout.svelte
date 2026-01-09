@@ -20,6 +20,9 @@
 <main class={!hideNavbar ? 'pt-32' : ''}>
 	{@render children()}
 </main>
-<Footer />
+
 <SearchOverlay />
 <CartSidebar />
+{#if !hideNavbar}
+	<Footer />
+{/if}
